@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  .container.pl-7.pr-7
+    .col-md-12
+      .card
+        .card-header
+          h3  | Select Model |
+        .card-body
+          form(action='/result', method='post')
+            .form-group
+              .row
+                .col-md-5
+                  label(for='data_set') DATA
+                  select#data_set.custom-select.custom-select-lg.mb-3(name='data_set', required)
+                    option(value = "IMDB", selected) IMDB
+                    option(value = "MNIST") MNIST
+            .form-group
+              .row
+                .col-md-5
+                  label(for='algorithm') 암호화 알고리즘
+                  select#algorithim.custom-select.custom-select-lg.mb-3(name='algorithm', required)
+                    option(value = "AES", selected) AES
+                    option(value = "DES") DES
+                    option(value = "RSA") RSA
+            .form-group
+              .row
+                .col-md-5
+                  label(for='model') 러닝모델
+                  select#model.custom-select.custom-select-lg.mb-3(name='model', required)
+                    option(value = "CNN", selected) CNN
+                    option(value = "RNN") RNN
+            //- .form-group
+            //-   .row
+            //-     .col-md-5
+            //-       label(for='test_set') TEST
+            //-       .row.pl-3
+            //-         .input-group.mb-3
+            //-           .custom-file
+            //-             input#test_set.custom-file-input(type='file', aria-describedby='test_set')
+            //-             label.custom-file-label(for='test_set') Choose file
+            button.btn.btn-primary(type='submit') Running

@@ -1,0 +1,104 @@
+extends layout
+
+block content
+  .container.pl-7.pr-7
+    .col-md-12
+      .card
+        .card-header
+          h3 | Result |
+
+          #mnist(style='display:none')
+            .row
+              .col-md-6
+                .row
+                  img(src="/images/test_image_0.png")
+                  h5 [ #{predict[0]} ]
+                br
+                .row
+                  img(src="/images/test_image_1.png")
+                  h5 [ #{predict[1]} ]
+                br
+                .row
+                  img(src="/images/test_image_2.png")
+                  h5 [ #{predict[2]} ]
+                br
+                .row
+                  img(src="/images/test_image_3.png")
+                  h5 [ #{predict[3]} ]
+                br
+                .row
+                  img(src="/images/test_image_4.png")
+                  h5 [ #{predict[4]} ]
+                br
+              .col-md-6
+                .row
+                  img(src="/images/test_image_5.png")
+                  h5 [ #{predict[5]} ]
+                br
+                .row
+                  img(src="/images/test_image_6.png")
+                  h5 [ #{predict[6]} ]
+                br
+                .row
+                  img(src="/images/test_image_7.png")
+                  h5 [ #{predict[7]} ]
+                br
+                .row
+                  img(src="/images/test_image_8.png")
+                  h5 [ #{predict[8]} ]
+                br
+                .row
+                  img(src="/images/test_image_9.png")
+                  h5 [ #{predict[9]} ]
+                br
+          #imdb(style='display:none')
+            .row
+              h5 [ #{predict[0]} ]
+              p [ #{predict[1]} ]
+            .row
+              h5 [ #{predict[2]} ]
+              p [ #{predict[3]} ]
+            .row
+              h5 [ #{predict[4]} ]
+              p [ #{predict[5]} ]
+            .row
+              h5 [ #{predict[6]} ]
+              p [ #{predict[7]} ]
+            .row
+              h5 [ #{predict[8]} ]
+              p [ #{predict[9]} ]
+            
+        .card-body
+          .col-md-12
+            h1 #{data_set}의 #{algorithm}알고리즘 #{model}모델 결과
+            br
+            br
+          .row
+            .col-md-6
+              img.img-thumbnail(src="/images/" + data_set + "_" + algorithm + "_" + model + "_acc.png")
+              .row.justify-content-center
+                br
+                h5 Accuracy
+            .col-md-6
+              img.img-thumbnail(src="/images/" + data_set + "_" + algorithm + "_" + model + "_loss.png")
+              .row.justify-content-center
+                br
+                h5 Loss
+
+  script(type="text/javascript").
+    var flag = #{mnist_flag}
+    console.log(flag)
+
+    function doDisplay(){
+      var con1 = document.getElementById("mnist");
+      var con2 = document.getElementById("imdb");
+      if (flag == true){
+        con1.style.display='block';
+        con2.style.display='none';
+      }
+      else{
+        con1.style.display='none';
+        con2.style.display='block';
+      }
+    }
+    window.onload = doDisplay;
